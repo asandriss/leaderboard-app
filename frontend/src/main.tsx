@@ -31,28 +31,30 @@ const App = () => {
   };
 
   return (
-    <Container className="py-4">
-      <Row>
-        <Col>
-          <h2>Upload JSON</h2>
-          <Form onSubmit={handleFileUpload}>
-            <Form.Group controlId="formFile" className="mb-3">
-              <Form.Control type="file" name="file" accept=".json" required />
-            </Form.Group>
-            <Button variant="primary" type="submit">Upload</Button>
-          </Form>
-          {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
-        </Col>
-      </Row>
-      {jsonResult && (
-        <Row className="mt-4">
+    <div className="bg-dark text-light min-vh-100">
+      <Container className="py-4">
+        <Row>
           <Col>
-            <h4>Response</h4>
-            <pre>{JSON.stringify(jsonResult, null, 2)}</pre>
+            <h2>Upload JSON</h2>
+            <Form onSubmit={handleFileUpload}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Control type="file" name="file" accept=".json" required />
+              </Form.Group>
+              <Button variant="primary" type="submit">Upload</Button>
+            </Form>
+            {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
           </Col>
         </Row>
-      )}
-    </Container>
+        {jsonResult && (
+          <Row className="mt-4">
+            <Col>
+              <h4>Response</h4>
+              <pre>{JSON.stringify(jsonResult, null, 2)}</pre>
+            </Col>
+          </Row>
+        )}
+      </Container>
+    </div>
   );
 };
 
