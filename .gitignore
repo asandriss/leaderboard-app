@@ -1,0 +1,50 @@
+# ─── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+dist/
+build/
+*.log
+
+# ─── Node / TypeScript ────────────────────────────────────────────
+node_modules/
+*.tsbuildinfo
+dist/
+build/
+.cache/
+
+# ─── Frontend ─────────────────────────────────────────────────────
+frontend/.next/
+frontend/.vite/
+frontend/.nuxt/
+frontend/coverage/
+
+# ─── Nix Flakes ───────────────────────────────────────────────────
+result
+.nix-flake-cache/
+flake.lock
+
+# ─── Docker / Local Services ──────────────────────────────────────
+uploads/
+redis-data/
+.env
+*.env
+*.db
+*.sqlite3
+
+# ─── IDE / Editor / MacOS Trash ───────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ─── System-wide Git Hooks ────────────────────────────────────────
+.git/hooks/
+
