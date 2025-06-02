@@ -8,5 +8,5 @@ CORS(app)  # ← Enables CORS for all routes
 @app.route("/upload", methods=["POST"])
 def upload_file():
     upload_id = str(uuid.uuid4())
-    print(f"Accepted mock upload, ID: {upload_id}")
+    print(f"Accepted mock upload with ID: {upload_id}")
     return jsonify({"status": "accepted", "upload_id": upload_id})

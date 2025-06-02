@@ -21,9 +21,12 @@ const App = () => {
       const response = await axios.post('http://localhost:5000/upload', formData);
       setJsonResult(response.data);
       setError(null);
-    } catch (err: any) {
-      setError(err.message || 'Upload failed');
-      setJsonResult(null);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Upload failed');
+      }
     }
   };
 
@@ -52,5 +55,7 @@ const App = () => {
     </Container>
   );
 };
+
+export default App;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);

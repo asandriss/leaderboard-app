@@ -20,8 +20,7 @@ source .venv/bin/activate
 # 3. Start Flask backend
 echo "🚀 Starting backend..."
 # FLASK_APP=backend/app.py flask run > backend.log 2>&1 &
-FLASK_APP=backend/app.py flask run --host=0.0.0.0 --port=5000 > backend.log 2>&1 &
-
+FLASK_APP=backend/app.py flask run --reload --host=0.0.0.0 --port=5000 > backend.log 2>&1 &
 
 # 4. Start React frontend
 echo "🌐 Starting frontend..."
