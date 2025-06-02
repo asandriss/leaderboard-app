@@ -48,3 +48,7 @@ Thumbs.db
 # ─── System-wide Git Hooks ────────────────────────────────────────
 .git/hooks/
 
+# ─── Frontend ────────────────────────────────────────
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.vite/
