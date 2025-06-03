@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from backend.services.submission_repository import SubmissionRepository
 from backend.services.upload_service import process_uploaded_json
+from backend.services.leaderboard_service import compute_leaderboard
 import uuid
 
 app = Flask(__name__)
@@ -21,3 +22,9 @@ def upload_file():
     print(f"[POST /upload {upload_id}] processing complete and total processed is {len(added)}")
 
     return jsonify({"status": "accepted", "upload_id": upload_id, "stored": len(added)})
+
+@app.route("/leaderboard", methods=["GET"])
+def get_leaderboard():
+    print("[GET /leaderboard] returning leaderboard", flush=True)
+    top = compute_leaderboard(repository)
+    return jsonify([entry.__dict__ for entry in top])
