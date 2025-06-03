@@ -23,11 +23,13 @@ def upload_file():
 
     return jsonify({"status": "accepted", "upload_id": upload_id, "stored": len(added)})
 
+
 @app.route("/leaderboard", methods=["GET"])
 def get_leaderboard():
     print("[GET /leaderboard] returning leaderboard", flush=True)
     top = compute_leaderboard(repository)
     return jsonify([entry.__dict__ for entry in top])
+
 
 @app.route("/submissions/<username>", methods=["GET"])
 def get_user_submissions(username):
@@ -42,3 +44,9 @@ def get_user_submissions(username):
         }
         for s in submissions_sorted
     ])
+
+
+@app.route("/submissions", methods=["DELETE"])
+def clear_submissions():
+    repository.clear()
+    return jsonify({"status": "cleared"})

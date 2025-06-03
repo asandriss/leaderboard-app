@@ -1,54 +1,54 @@
-import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Alert, Button } from 'react-bootstrap';
 import axios from 'axios';
-import Layout from './components/Layout';
+import Uploader from './Uploader';
 import Leaderboard from './Leaderboard';
+import './App.css';
 
 const App = () => {
-  const [jsonResult, setJsonResult] = useState(null);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [error, setError] = useState<string | null>(null);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
-  const handleFileUpload = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fileInput = form.elements.namedItem('file') as HTMLInputElement;
-    if (!fileInput?.files?.[0]) return;
-
-    const formData = new FormData();
-    formData.append('file', fileInput.files[0]);
-
+  const fetchLeaderboard = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData);
-      setJsonResult(response.data);
-      setError(null);
-    } catch (err: unknown) {
-      if (err instanceof Error) setError(err.message);
-      else setError('Upload failed');
+      const response = await axios.get('http://localhost:5000/leaderboard');
+      setLeaderboard(response.data);
+    } catch (err) {
+      setError("Failed to load leaderboard");
     }
   };
 
+  const clearData = async () => {
+    try {
+      await axios.delete('http://localhost:5000/submissions');
+      setStatusMessage("All data cleared.");
+      fetchLeaderboard();
+    } catch {
+      setStatusMessage("Failed to clear data.");
+    }
+  };
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
+
   return (
-    <Layout>
-      <h2>Upload JSON</h2>
-      <Form onSubmit={handleFileUpload}>
-        <Form.Group controlId="formFile" className="mb-3">
-          <Form.Control type="file" name="file" accept=".json" required />
-        </Form.Group>
-        <Button variant="primary" type="submit">Upload</Button>
-      </Form>
-      {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
-
-      {jsonResult && (
-        <div className="mt-4">
-          <h4>Response</h4>
-          <pre>{JSON.stringify(jsonResult, null, 2)}</pre>
-        </div>
-      )}
-
-      <div className="mt-5">
-        <Leaderboard />
-      </div>
-    </Layout>
+    <div className="bg-dark text-light min-vh-100">
+      <Container className="py-4">
+        <Row>
+          <Col><h2>Upload JSON</h2></Col>
+          <Col className="text-end">
+            <Button variant="danger" onClick={clearData}>Clear All Data</Button>
+          </Col>
+        </Row>
+        {error && <Alert variant="danger">{error}</Alert>}
+        {statusMessage && <Alert variant="info" className="mt-3">{statusMessage}</Alert>}
+        <Uploader onUploadSuccess={fetchLeaderboard} />
+        <hr className="border-light" />
+        <Leaderboard entries={leaderboard} />
+      </Container>
+    </div>
   );
 };
 
