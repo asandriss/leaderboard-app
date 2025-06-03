@@ -16,7 +16,7 @@ class Submission:
             user = data["user"]
             score = int(data["score"])
             title = data.get("title", "")
-            date = datetime.strptime(data["date"], "%Y-%m-%d")
+            date = datetime.strptime(data["date"], "%d/%m/%Y")
         except (KeyError, ValueError, TypeError) as e:
             raise ValueError(f"Invalid submission data: {data}") from e
 
