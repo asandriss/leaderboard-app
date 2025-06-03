@@ -28,6 +28,7 @@ def process_uploaded_json(raw_data: str, repo: SubmissionRepository) -> List[Sub
         for sub in submissions:
             print(f"[upload_service] Raw entry: {sub}")
             sub["user"] = user_name
+            sub["title"] = sub.get("name", "")
 
             try:
                 submission = Submission.from_dict(sub)
