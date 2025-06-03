@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import Leaderboard from './Leaderboard'
 
 const App = () => {
   const [jsonResult, setJsonResult] = useState(null);
@@ -53,6 +54,12 @@ const App = () => {
             </Col>
           </Row>
         )}
+
+        <Row className="mt-5">
+          <Col>
+            <Leaderboard />
+          </Col>
+        </Row>
       </Container>
     </div>
   );
