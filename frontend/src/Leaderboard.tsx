@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface LeaderboardEntry {
   user: string;
@@ -10,20 +11,20 @@ const Leaderboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/leaderboard")
+    fetch('http://localhost:5000/leaderboard')
       .then((res) => res.json())
       .then((data) => {
         setLeaderboard(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to fetch leaderboard", err);
+        console.error('Failed to fetch leaderboard', err);
         setLoading(false);
       });
   }, []);
 
   return (
-    <div className="mt-4">
+    <>
       <h1 className="mb-4">🏆 Leaderboard</h1>
       {loading ? (
         <p>Loading...</p>
@@ -42,14 +43,18 @@ const Leaderboard = () => {
             {leaderboard.map((entry, index) => (
               <tr key={entry.user}>
                 <td>{index + 1}</td>
-                <td>{entry.user}</td>
+                <td>
+                  <Link to={`/user/${encodeURIComponent(entry.user)}`} className="text-info">
+                    {entry.user}
+                  </Link>
+                </td>
                 <td>{entry.total_score}</td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
-    </div>
+    </>
   );
 };
 

@@ -28,3 +28,17 @@ def get_leaderboard():
     print("[GET /leaderboard] returning leaderboard", flush=True)
     top = compute_leaderboard(repository)
     return jsonify([entry.__dict__ for entry in top])
+
+@app.route("/submissions/<username>", methods=["GET"])
+def get_user_submissions(username):
+    submissions = repository.get_user_submissions(username)
+    submissions_sorted = sorted(submissions, key=lambda s: s.date, reverse=True)
+
+    return jsonify([
+        {
+            "title": s.title,
+            "score": s.score,
+            "date": s.date.strftime("%d/%m/%Y")
+        }
+        for s in submissions_sorted
+    ])
