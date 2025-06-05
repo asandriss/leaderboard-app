@@ -26,4 +26,6 @@ class Submission:
         if not (0 <= score <= 1000):  # arbitrary score range check
             raise ValueError("Score must be between 0 and 1000")
 
-        return Submission(user=user.strip(), score=score, title=title.strip(), date=date)
+        return Submission(
+            user=user.strip(), score=score, title=title.strip(), date=date
+        )

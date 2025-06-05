@@ -1,11 +1,12 @@
 import pytest
-from backend.services.upload_service import process_uploaded_json
+
 from backend.services.submission_repository import SubmissionRepository
+from backend.services.upload_service import process_uploaded_json
 
 
 def test_process_valid_json_input():
     repo = SubmissionRepository()
-    json_data = '''
+    json_data = """
     [
         {
             "name": "Alice",
@@ -15,7 +16,7 @@ def test_process_valid_json_input():
             ]
         }
     ]
-    '''
+    """
     added = process_uploaded_json(json_data, repo)
     assert len(added) == 2
     assert repo.get_user_submissions("Alice") == added
@@ -23,7 +24,7 @@ def test_process_valid_json_input():
 
 def test_process_skips_invalid_submissions():
     repo = SubmissionRepository()
-    json_data = '''
+    json_data = """
     [
         {
             "name": "Bob",
@@ -33,7 +34,7 @@ def test_process_skips_invalid_submissions():
             ]
         }
     ]
-    '''
+    """
     added = process_uploaded_json(json_data, repo)
     assert len(added) == 1
     assert added[0].score == 88

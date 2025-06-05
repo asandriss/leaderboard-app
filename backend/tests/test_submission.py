@@ -1,5 +1,7 @@
-import pytest
 from datetime import datetime
+
+import pytest
+
 from backend.models.submission import Submission
 
 
@@ -11,13 +13,20 @@ def test_valid_submission_parsing_without_title():
     assert s.title == ""
     assert s.date == datetime(2024, 1, 1)
 
+
 def test_valid_submission_parsing_with_full_information():
-    data = {"user": "alice", "score": 87, "title": "this is the submission title", "date": "01/01/2024"}
+    data = {
+        "user": "alice",
+        "score": 87,
+        "title": "this is the submission title",
+        "date": "01/01/2024",
+    }
     s = Submission.from_dict(data)
     assert s.user == "alice"
     assert s.score == 87
     assert s.title == "this is the submission title"
     assert s.date == datetime(2024, 1, 1)
+
 
 def test_invalid_missing_fields():
     with pytest.raises(ValueError):

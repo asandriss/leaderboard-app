@@ -1,5 +1,7 @@
 from typing import List
+
 from backend.services.leaderboard_service import LeaderboardEntry
+
 
 class LeaderboardReadDB:
     def __init__(self):

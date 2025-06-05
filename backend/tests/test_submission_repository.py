@@ -1,11 +1,15 @@
-import pytest
 from datetime import datetime
+
+import pytest
+
 from backend.models.submission import Submission
 from backend.services.submission_repository import SubmissionRepository
 
 
 def make_submission(user: str, title: str, date: str, score: int = 100) -> Submission:
-    return Submission(user=user, title=title, score=score, date=datetime.strptime(date, "%d/%m/%Y"))
+    return Submission(
+        user=user, title=title, score=score, date=datetime.strptime(date, "%d/%m/%Y")
+    )
 
 
 def test_add_and_retrieve_submission():
