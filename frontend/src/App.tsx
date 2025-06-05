@@ -23,6 +23,7 @@ const App = () => {
     try {
       await axios.delete('http://localhost:5000/submissions');
       setStatusMessage("All data cleared.");
+      setTimeout(() => setStatusMessage(null), 3000);
       fetchLeaderboard();
     } catch {
       setStatusMessage("Failed to clear data.");

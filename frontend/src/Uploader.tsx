@@ -1,6 +1,6 @@
 import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Uploader = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
   const [status, setStatus] = useState<string | null>(null);
@@ -21,6 +21,13 @@ const Uploader = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
       setStatus("Upload failed");
     }
   };
+
+  useEffect(() => {
+  if (status) {
+    const timer = setTimeout(() => setStatus(null), 3000);
+    return () => clearTimeout(timer);
+  }
+}, [status]);
 
   return (
     <Form onSubmit={handleFileUpload}>
