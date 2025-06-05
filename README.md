@@ -67,6 +67,7 @@ Tests are also automatically run on every commit via GitHub Actions.
 
 ## Project Structure
 
+```bash
 ├── backend/
 │ ├── app.py                            # Main Flask application entrypoint
 │ ├── models/
@@ -100,6 +101,7 @@ Tests are also automatically run on every commit via GitHub Actions.
 └── .github/
 └─── workflows/
 └──── python-tests.yml                  # GitHub Actions workflow to run backend tests on push
+```
 
 ## Completed Functionality
 - File upload and in-browser validation
