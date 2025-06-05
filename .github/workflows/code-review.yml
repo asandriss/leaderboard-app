@@ -20,10 +20,8 @@ jobs:
       env:
         VALIDATE_ALL_CODEBASE: true
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ISORT_CONFIG_FILE: pyproject.toml
         VALIDATE_PYTHON_BLACK: true
         VALIDATE_PYTHON_FLAKE8: true
-        VALIDATE_PYTHON_ISORT: true
         VALIDATE_PYTHON_MYPY: true
         VALIDATE_TYPESCRIPT_ES: true
         VALIDATE_MARKDOWN: true
