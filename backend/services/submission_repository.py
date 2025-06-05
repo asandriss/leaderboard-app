@@ -6,7 +6,7 @@ from backend.models.submission import Submission
 class SubmissionRepository:
     def __init__(self):
         self._submissions_by_user: Dict[str, List[Submission]] = {}
-        self._seen: Set[Tuple[str, int, str]] = set()
+        self._seen: Set[Tuple[str, str, str]] = set()
 
     def add(self, submission: Submission) -> bool:
         # use user, submission title and date as a unique identifier of a score

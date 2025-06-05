@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import List
 
-from backend.models.submission import Submission
 from backend.services.submission_repository import SubmissionRepository
 
 

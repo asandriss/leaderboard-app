@@ -1,5 +1,3 @@
-import pytest
-
 from backend.services.leaderboard_read_db import LeaderboardReadDB
 from backend.services.leaderboard_service import LeaderboardEntry
 

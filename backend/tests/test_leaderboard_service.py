@@ -1,8 +1,7 @@
 from datetime import datetime
 
 from backend.models.submission import Submission
-from backend.services.leaderboard_service import (LeaderboardEntry,
-                                                  compute_leaderboard)
+from backend.services.leaderboard_service import compute_leaderboard
 from backend.services.submission_repository import SubmissionRepository
 
 

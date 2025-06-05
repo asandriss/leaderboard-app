@@ -1,7 +1,5 @@
 from datetime import datetime
 
-import pytest
-
 from backend.models.submission import Submission
 from backend.services.submission_repository import SubmissionRepository
 
