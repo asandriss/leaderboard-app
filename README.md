@@ -65,6 +65,8 @@ To run backend tests:
 
 Tests are also automatically run on every commit via GitHub Actions.
 
+For manual testing two example JSON files are included with the files. 
+
 ## Project Structure
 
 ```bash
@@ -95,6 +97,7 @@ Tests are also automatically run on every commit via GitHub Actions.
 │ │ ├── App.css                         # Global styles for layout and dark mode
 │ │ └── index.css                       # Default Vite stylesheet (mostly unused)
 │ └── tsconfig.json 
+├── testdata/                           # example JSON files that can be uploaded to test functionality
 ├── requirements.txt                    # Python dependencies for the backend
 ├── start.sh                            # Starts backend and frontend services
 ├── stop.sh                             # Gracefully shuts down services
