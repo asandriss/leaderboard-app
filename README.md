@@ -59,6 +59,7 @@ This local mock setup provides a clean starting point while remaining faithful t
     ```
 
 4. Open the application on http://localhost:5173
+
 4a. Backend will be running on http://localhost:5000 and can be tested via dev tools
 
 ## Testing
