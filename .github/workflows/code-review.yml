@@ -1,0 +1,27 @@
+name: Code Review
+
+on:
+  push:
+    branches: [ main, review ]
+  pull_request:
+    branches: [ main, review ]
+
+jobs:
+  lint:
+    name: Run Super-Linter
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Run GitHub Super-Linter
+      uses: github/super-linter@v6
+      env:
+        VALIDATE_ALL_CODEBASE: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_PYTHON_BLACK: true
+        VALIDATE_PYTHON_FLAKE8: true
+        VALIDATE_PYTHON_MYPY: true
+        VALIDATE_TYPESCRIPT_ES: true
+        VALIDATE_MARKDOWN: true

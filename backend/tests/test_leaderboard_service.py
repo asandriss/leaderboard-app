@@ -1,18 +1,27 @@
 from datetime import datetime
+
 from backend.models.submission import Submission
+from backend.services.leaderboard_service import compute_leaderboard
 from backend.services.submission_repository import SubmissionRepository
-from backend.services.leaderboard_service import compute_leaderboard, LeaderboardEntry
+
 
 def make_submission(user: str, score: int, date="2024-01-01") -> Submission:
-    return Submission(user=user, score=score, title=f"Title {score}", date=datetime.strptime(date, "%Y-%m-%d"))
+    return Submission(
+        user=user,
+        score=score,
+        title=f"Title {score}",
+        date=datetime.strptime(date, "%Y-%m-%d"),
+    )
+
 
 def test_leaderboard_filters_users_with_less_than_3_submissions():
     repo = SubmissionRepository()
     repo.add(make_submission("alice", 100))
-    repo.add(make_submission("alice", 95)) 
+    repo.add(make_submission("alice", 95))
 
     leaderboard = compute_leaderboard(repo)
     assert leaderboard == []
+
 
 def test_leaderboard_sums_top_24_scores_only():
     repo = SubmissionRepository()
@@ -29,6 +38,7 @@ def test_leaderboard_sums_top_24_scores_only():
     assert len(entry.top_scores) == 24
     assert entry.total_score == sum(range(6, 30))  # top 24 scores (ignore frist 6)
 
+
 def test_leaderboard_ranking_is_correct():
     repo = SubmissionRepository()
 
@@ -42,6 +52,7 @@ def test_leaderboard_ranking_is_correct():
     leaderboard = compute_leaderboard(repo)
 
     assert [e.user for e in leaderboard] == ["carol", "alice", "bob"]
+
 
 def test_leaderboard_limit_parameter():
     repo = SubmissionRepository()

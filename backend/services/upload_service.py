@@ -1,15 +1,19 @@
 import json
 from typing import List
+
 from backend.models.submission import Submission
 from backend.services.submission_repository import SubmissionRepository
 
-def process_uploaded_json(raw_data: str, repo: SubmissionRepository) -> List[Submission]:
+
+def process_uploaded_json(
+    raw_data: str, repo: SubmissionRepository
+) -> List[Submission]:
     try:
         users = json.loads(raw_data)
         assert isinstance(users, list)
-    except(json.JSONDecodeError, AssertionError):
+    except (json.JSONDecodeError, AssertionError):
         raise ValueError("Invalid JSON format. Expected list of user objects.")
-    
+
     print(f"[upload_service] Parsed {len(users)} users")
     added_submissions: List[Submission] = []
 
@@ -18,7 +22,6 @@ def process_uploaded_json(raw_data: str, repo: SubmissionRepository) -> List[Sub
         print(f"[upload_service] Processing user: {user_name}")
         if not isinstance(user_name, str):
             continue
-
 
         submissions = user_entry.get("submissions", [])
         if not isinstance(submissions, list):
@@ -36,5 +39,5 @@ def process_uploaded_json(raw_data: str, repo: SubmissionRepository) -> List[Sub
                     added_submissions.append(submission)
             except ValueError:
                 continue
-        
+
     return added_submissions

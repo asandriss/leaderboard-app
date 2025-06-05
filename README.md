@@ -1,6 +1,6 @@
 # Online Leaderboard App
 
-This project implements an online leaderboard system where users can upload JSON files containing user submission scores. 
+This project implements an online leaderboard system where users can upload JSON files containing user submission scores.
 The leaderboard is computed by aggregating each user’s best 24 submissions, and a user must have at least 3 to qualify.
 
 ## Features
@@ -58,9 +58,9 @@ This local mock setup provides a clean starting point while remaining faithful t
     ./start.sh
     ```
 
-4. Open the application on http://localhost:5173
+4. Open the application on <http://localhost:5173>
 
-4a. Backend will be running on http://localhost:5000 and can be tested via dev tools
+4a. Backend will be running on <http://localhost:5000> and can be tested via dev tools
 
 ## Testing
 To run backend tests:
@@ -70,7 +70,7 @@ To run backend tests:
 
 Tests are also automatically run on every commit via GitHub Actions.
 
-For manual testing two example JSON files are included with the files. 
+For manual testing two example JSON files are included with the files.
 
 ## Project Structure
 
