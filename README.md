@@ -20,7 +20,11 @@ The leaderboard is computed by aggregating each user’s best 24 submissions, an
 - Frontend: React, TypeScript, Bootstrap
 - Dev Tools: Shell scripts, GitHub Actions
 
-## Architecture Intent
+## Architecture Overview
+
+![Architecture Diagram](./docs/architecture.png)
+
+### Architecture Intent
 
 This project was designed to reflect the serverless-first architecture style used at Perspectum. While it currently runs locally using Flask and in-memory services for simplicity, the structure allows for easy migration to a production-grade, AWS-based setup. Key migration targets include:
 
