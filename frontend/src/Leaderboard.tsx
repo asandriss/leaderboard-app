@@ -23,7 +23,9 @@ const Leaderboard = ({ entries }: { entries: LeaderboardEntry[] }) => {
           {entries.map((entry, index) => (
             <tr key={entry.user}>
               <td>{index + 1}</td>
-              <td>{entry.user}</td>
+              <td>
+                <a href={`/user/${encodeURIComponent(entry.user)}`} className="text-light">{entry.user}</a>
+                </td>
               <td>{entry.total_score}</td>
             </tr>
           ))}

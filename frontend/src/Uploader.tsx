@@ -31,11 +31,11 @@ const Uploader = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
 
   return (
     <Form onSubmit={handleFileUpload}>
+      {status && <Alert variant="info" className="mt-3">{status}</Alert>}
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Control type="file" name="file" accept=".json" required />
       </Form.Group>
       <Button variant="primary" type="submit">Upload</Button>
-      {status && <Alert variant="info" className="mt-3">{status}</Alert>}
     </Form>
   );
 };

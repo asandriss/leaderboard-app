@@ -27,6 +27,9 @@ const UserPage = () => {
   return (
     <Layout>
       <h2>📄 Submissions for <strong>{username}</strong></h2>
+      <a href="/" className="btn btn-outline-light mb-3">
+        ← Back to Leaderboard
+      </a>
       {loading ? (
         <p>Loading...</p>
       ) : submissions.length === 0 ? (
