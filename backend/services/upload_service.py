@@ -1,8 +1,11 @@
 import json
+import logging
 from typing import List
 
 from backend.models.submission import Submission
 from backend.services.submission_repository import SubmissionRepository
+
+logger = logging.getLogger(__name__)
 
 
 def process_uploaded_json(
