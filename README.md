@@ -62,6 +62,12 @@ This local mock setup provides a clean starting point while remaining faithful t
 
 4a. Backend will be running on <http://localhost:5000> and can be tested via dev tools
 
+5. To monitor backend logs in real time
+
+    ```bash
+    tail -f backend/server.log
+    ```
+
 ## Testing
 To run backend tests:
     ```bash

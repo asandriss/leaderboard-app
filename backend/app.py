@@ -1,4 +1,5 @@
 import logging
+import os
 import uuid
 
 from flask import Flask, jsonify, request
@@ -13,10 +14,16 @@ app = Flask(__name__)
 CORS(app)  # Enables CORS for all routes
 
 # Logging setup
+LOG_DIR = "backend"
+LOG_PATH = os.path.join(LOG_DIR, "server.log")
+os.makedirs(LOG_DIR, exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[logging.FileHandler(LOG_PATH), logging.StreamHandler()],
 )
+
 logger = logging.getLogger(__name__)
 
 # In-memory services (can be replaced with production alternatives)
