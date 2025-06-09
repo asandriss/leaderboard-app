@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Alert, Button } from 'react-bootstrap';
 import axios from 'axios';
-import Uploader from '../Uploader';
-import Leaderboard from '../Leaderboard';
+import Uploader from '../components/Uploader';
+import Leaderboard from '../components/Leaderboard';
 
 const HomePage = () => {
   const [leaderboard, setLeaderboard] = useState([]);
