@@ -1,6 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Layout from './components/Layout';
+import { Button } from 'react-bootstrap';
+import Layout from '../components/Layout';
 
 interface Submission {
   title: string;
@@ -23,13 +24,14 @@ const UserPage = () => {
         setLoading(false);
       });
   }, [username]);
-
+  const navigate = useNavigate();
   return (
     <Layout>
       <h2>📄 Submissions for <strong>{username}</strong></h2>
-      <a href="/" className="btn btn-outline-light mb-3">
-        ← Back to Leaderboard
-      </a>
+      <Button variant="secondary" onClick={() => navigate(-1)}>
+        ← Back
+      </Button>
+      <hr/>
       {loading ? (
         <p>Loading...</p>
       ) : submissions.length === 0 ? (
