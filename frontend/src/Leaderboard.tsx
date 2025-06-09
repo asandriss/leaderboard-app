@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 interface LeaderboardEntry {
   user: string;
   total_score: number;
@@ -24,7 +26,7 @@ const Leaderboard = ({ entries }: { entries: LeaderboardEntry[] }) => {
             <tr key={entry.user}>
               <td>{index + 1}</td>
               <td>
-                <a href={`/user/${encodeURIComponent(entry.user)}`} className="text-light">{entry.user}</a>
+                <Link to={`/user/${entry.user}`}>{entry.user}</Link>
                 </td>
               <td>{entry.total_score}</td>
             </tr>
