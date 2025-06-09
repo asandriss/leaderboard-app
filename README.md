@@ -141,7 +141,7 @@ For manual testing two example JSON files are included with the files.
 ## Design Considerations and Limitations
 
 - The backend uses in-memory storage (sumbission_repository.py) to prioritize testability and simplicity. In a production system this would be replaced with persistent storage such as Redis or a database.
-- Leaderboard results are now persisted in memory and refreshed after each upload. While this improves performance, they are still recomputed synchronously. In a production-ready version, leaderboard updates should be triggered asynchronously via a queue when new data is ingested. 
+- Leaderboard results are computed on demand. This may become expensive as the dataset grows. In a production-ready version, leaderboard results should be precomputed and persisted, then refreshed only when new data is ingested.
 - The system processes files synchronously. The code is structured to allow future introduction of background processing using queues (e.g. Redis, Celery).
 - ~~Page navigation currently causes a full reload, which can result in a visible page flash. This could be resolved by adopting React Router and converting the app to a single-page application (SPA).~~
 
